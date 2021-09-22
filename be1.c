@@ -17,6 +17,15 @@ typedef struct image
   struct pixel *data;
 } image;
 
+void print_hexcolor(pixel p){
+  char hex[4] = {0,p.r,p.g,p.b};
+  printf("0x");
+  for (int i = 0; i < 4; i++)  {
+    printf("%02x", (unsigned char) hex[i]);
+  }
+  printf("\n");
+}
+
 image *empty_image(int w, int h)
 {
   // ça crée un bloc de pixel dans la ram, tout est mis à 0 avec calloc
@@ -32,7 +41,7 @@ image *empty_image(int w, int h)
     pixel blue;
     blue.r = 0;
     blue.g = 0;
-    blue.b = 0xFF;
+    blue.b = 255;
     pixels[i] = blue;
   }
 
@@ -231,6 +240,12 @@ void test_decode_colors()
 int main()
 {
   printf("Hello !\n");
-
+  image* im = empty_image(3,3);
+  for (int i = 0; i < im->height*im->width; i++)
+  {
+    print_hexcolor(im->data[i]);
+  }
+  free(im->data);
+  free(im);
   return 0;
 }
