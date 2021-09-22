@@ -16,7 +16,9 @@ typedef struct image {
 } image;
 
 image* empty_image(int w, int h){
+  // ça crée un bloc de pixel dans la ram, tout est mis à 0 avec calloc
   pixel* pixels = (pixel*)calloc(w*h,sizeof(pixel));
+  // malloc réserve la mémoire sans mettre à 0, du coup c'est bien d'instancier les valeurs au cas où
   image* im = (image*)malloc(sizeof(image));
   im->height = h;
   im->width = w;
