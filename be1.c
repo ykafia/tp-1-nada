@@ -17,15 +17,6 @@ typedef struct image
   struct pixel *data;
 } image;
 
-void print_hexcolor(pixel p){
-  char hex[4] = {0,p.r,p.g,p.b};
-  printf("0x");
-  for (int i = 0; i < 4; i++)  {
-    printf("%02x", (unsigned char) hex[i]);
-  }
-  printf("\n");
-}
-
 image *empty_image(int w, int h)
 {
   // ça crée un bloc de pixel dans la ram, tout est mis à 0 avec calloc
@@ -88,10 +79,21 @@ void write_image(char *filename, image *img)
   fwrite_int(0, fd);              // nombre de couleurs importantes (inutilisé)
 
   // TODO : écrire chacun des pixels de l'image
-  for(int i = 0; i< img->height * img->width; i++){
+  // for(int i = img->height * img->width -1; i>= 0; i++){
+  int len = img->height * img->width;
+  for(int i = len-1; i>-1; i--){
+
     fwrite_byte(img->data[i].b,fd);
     fwrite_byte(img->data[i].g,fd);
     fwrite_byte(img->data[i].r,fd);
+    if(i%img->width == 0){
+      for (int p = 0; p < img->width%4; p++)
+      {
+        fwrite_byte(0,fd);
+        fwrite_byte(0,fd);
+        fwrite_byte(0,fd);
+      }
+    }
   }
   fclose(fd);
 }
