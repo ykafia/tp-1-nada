@@ -1,0 +1,12 @@
+skin color ff ff 00
+eye color 33 22 22
+eye bg color ff dd ff
+eyebrow color 22 ff 2d
+eyebrow width 5
+nose color 00 ff ff
+nose size 4
+mouth color dc 86 f3
+mouth width 1
+mask no
+mask color ff ff ff
+mask border color aa bb cc
