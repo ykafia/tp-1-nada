@@ -96,7 +96,7 @@ void write_image(char *filename, image *img)
 
 struct pixel decode_color(unsigned int color)
 {
-  struct pixel p = {.r = 0, .g = 0, .b = 0};
+  struct pixel p = {.r = (color >> 16) & 0xFF, .g = (color>>8) & 0xFF, .b = color & 0xFF};
   return p;
 }
 
