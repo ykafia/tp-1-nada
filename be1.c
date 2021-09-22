@@ -255,7 +255,7 @@ void test_decode_colors()
 int main()
 {
   printf("Hello !\n");
-  image* im = empty_image(128,128);
+  image* im = empty_image(100,100);
   // for (int i = 0; i < im->height*im->width; i++)
   // {
   //   print_hexcolor(im->data[i]);
