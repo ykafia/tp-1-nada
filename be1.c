@@ -59,6 +59,12 @@ void fwrite_byte(unsigned char data, FILE *out)
 {
   fwrite(&data,sizeof(char),1,out);
 }
+/* Écrit plusieurs octets dans un fichier binaire */
+void fwrite_bytes(unsigned char* data, FILE *out)
+{
+  int size = strlen(data);
+  fwrite(data,sizeof(char),size,out);
+}
 
 void write_image(char *filename, image *img)
 {
@@ -82,6 +88,11 @@ void write_image(char *filename, image *img)
   fwrite_int(0, fd);              // nombre de couleurs importantes (inutilisé)
 
   // TODO : écrire chacun des pixels de l'image
+  for(int i = 0; i< img->height * img->width; i++){
+    fwrite_byte(img->data[i].b,fd);
+    fwrite_byte(img->data[i].g,fd);
+    fwrite_byte(img->data[i].r,fd);
+  }
   fclose(fd);
 }
 
@@ -242,7 +253,7 @@ void test_decode_colors()
 int main()
 {
   printf("Hello !\n");
-  image* im = empty_image(3,3);
+  image* im = empty_image(128,128);
   for (int i = 0; i < im->height*im->width; i++)
   {
     print_hexcolor(im->data[i]);
