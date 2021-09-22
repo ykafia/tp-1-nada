@@ -51,11 +51,13 @@ image *empty_image(int w, int h)
 /* Écrit un entier (4 octets) dans un fichier binaire */
 void fwrite_int(int data, FILE *out)
 {
+  fwrite(data,sizeof(int),1,out);
 }
 
 /* Écrit un octet dans un fichier binaire */
 void fwrite_byte(unsigned char data, FILE *out)
 {
+  fwrite(data,sizeof(char),1,out);
 }
 
 void write_image(char *filename, image *img)
@@ -245,6 +247,7 @@ int main()
   {
     print_hexcolor(im->data[i]);
   }
+  write_image("helloBlue.bmp",im);
   free(im->data);
   free(im);
   return 0;
