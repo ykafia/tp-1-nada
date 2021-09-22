@@ -29,11 +29,7 @@ image *empty_image(int w, int h)
 
   for (int i = 0; i < w * h; i++)
   {
-    pixel blue;
-    blue.r = 0;
-    blue.g = 0;
-    blue.b = 255;
-    pixels[i] = blue;
+    pixels[i] = decode_color(0x000000FF);
   }
 
   return im;
