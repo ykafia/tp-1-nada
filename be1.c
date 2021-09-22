@@ -17,6 +17,12 @@ typedef struct image
   struct pixel *data;
 } image;
 
+struct pixel decode_color(unsigned int color)
+{
+  struct pixel p = {.r = (color >> 16) & 0xFF, .g = (color>>8) & 0xFF, .b = color & 0xFF};
+  return p;
+}
+
 image *empty_image(int w, int h)
 {
   // ça crée un bloc de pixel dans la ram, tout est mis à 0 avec calloc
@@ -92,12 +98,6 @@ void write_image(char *filename, image *img)
     }
   }
   fclose(fd);
-}
-
-struct pixel decode_color(unsigned int color)
-{
-  struct pixel p = {.r = (color >> 16) & 0xFF, .g = (color>>8) & 0xFF, .b = color & 0xFF};
-  return p;
 }
 
 /* Colore le pixel aux coordonnées (x,y) avec la couleur color. */
