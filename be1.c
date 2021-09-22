@@ -254,10 +254,10 @@ int main()
 {
   printf("Hello !\n");
   image* im = empty_image(128,128);
-  for (int i = 0; i < im->height*im->width; i++)
-  {
-    print_hexcolor(im->data[i]);
-  }
+  // for (int i = 0; i < im->height*im->width; i++)
+  // {
+  //   print_hexcolor(im->data[i]);
+  // }
   write_image("helloBlue.bmp",im);
   free(im->data);
   free(im);
